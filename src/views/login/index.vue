@@ -5,25 +5,26 @@
         <img src="../../assets/img/logo_index.png" alt="">
       </div>
       <!-- 輸入框 -->
-      <el-form>
+      <el-form ref="myform" :model="loginform" :rules="loginrules">
         <!-- 手機號 -->
-         <el-form-item>
-           <el-input  placeholder="請輸入手機號">
+         <el-form-item  prop="mobile">
+           <el-input v-model="loginform.mobile" placeholder="請輸入手機號">
            </el-input>
          </el-form-item>
          <!-- 驗證碼 -->
-         <el-form-item>
-           <el-input style="width:65%" placeholder="請輸入驗證碼">
+         <el-form-item  prop="code">
+           <el-input v-model="loginform.code" style="width:65%" placeholder="請輸入驗證碼">
            </el-input>
            <el-button style="float:right" plain>發送驗證碼</el-button>
+          </el-form-item>
            <!-- 複選框 -->
-       <el-checkbox style="margin-top: 20px;">
+            <el-form-item  prop="check">
+       <el-checkbox v-model="loginform.check" style="margin-top: 20px;">
          我已閲讀并同意
        </el-checkbox>
        <!-- 登錄按鈕 -->
-       <el-form-item>
-         <el-button type="primary" style="width:100%;margin-top: 10px;" >登錄</el-button>
-       </el-form-item>
+         <el-button @click="submitlogin" type="primary" style="width:100%;margin-top: 10px;" >登錄</el-button>
+
          </el-form-item>
        </el-form>
     </el-card>
@@ -32,7 +33,40 @@
 </template>
 
 <script>
+// import { log } from 'util'
 export default {
+  data () {
+    return {
+      loginform: {
+        mobile: '',
+        code: '',
+        check: false
+      },
+      loginrules: {
+        mobile: [{ required: true, message: '手機號' },
+          { pattern: /^1[3456789]\d{9}$/, message: 'no' } ],
+        code: [{ required: true, message: '驗證碼' },
+          { pattern: /^\d{6}$/, message: 'no' }],
+        check: [{ validator: function (rule, value, callback) {
+          if (value) {
+            callback()
+          } else {
+            callback(new Error('同意就帶你玩'))
+          }
+        } }]
+
+      }
+    }
+  },
+  methods: {
+    submitlogin () {
+      this.$refs.myform.validate(function (ok) {
+        if (ok) {
+          console.log('通過')
+        }
+      })
+    }
+  }
 
 }
 </script>
