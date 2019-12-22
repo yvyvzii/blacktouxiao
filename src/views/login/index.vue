@@ -34,6 +34,7 @@
 
 <script>
 // import { log } from 'util'
+// import { log } from 'util'
 export default {
   data () {
     return {
@@ -60,17 +61,24 @@ export default {
   },
   methods: {
     submitlogin () {
-      this.$refs.myform.validate((ok) => {
-        if (ok) {
+      this.$refs.myform.validate((isok) => {
+        if (isok) {
           // console.log('通過')
           this.$axios({
             url: '/authorizations',
-            methods: 'post',
-            data: this.loginfrom
+            method: 'post',
+            data: this.loginform
           }).then(result => {
             // 前端緩存 獲得令牌
+            // console.log(result.data)
             window.localStorage.setItem('user-token', result.data.data.token)
-          }).catch(() => {})
+            this.$router.push('/home')
+          }).catch(() => {
+            this.$message({
+              type: 'warning',
+              message: '錯誤'
+            })
+          })
         }
       })
     }
