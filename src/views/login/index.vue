@@ -60,9 +60,17 @@ export default {
   },
   methods: {
     submitlogin () {
-      this.$refs.myform.validate(function (ok) {
+      this.$refs.myform.validate((ok) => {
         if (ok) {
-          console.log('通過')
+          // console.log('通過')
+          this.$axios({
+            url: '/authorizations',
+            methods: 'post',
+            data: this.loginfrom
+          }).then(result => {
+            // 前端緩存 獲得令牌
+            window.localStorage.setItem('user-token', result.data.data.token)
+          }).catch(() => {})
         }
       })
     }
