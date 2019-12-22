@@ -19,7 +19,7 @@
           </el-form-item>
            <!-- 複選框 -->
             <el-form-item  prop="check">
-       <el-checkbox v-model="loginform.check" style="margin-top: 20px;">
+       <el-checkbox v-model="loginform.check" >
          我已閲讀并同意
        </el-checkbox>
        <!-- 登錄按鈕 -->
