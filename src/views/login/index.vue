@@ -33,8 +33,7 @@
 </template>
 
 <script>
-// import { log } from 'util'
-// import { log } from 'util'
+
 export default {
   data () {
     return {
