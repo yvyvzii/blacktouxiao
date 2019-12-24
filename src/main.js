@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
+import component from './components'
 import Elementui from 'element-ui'
 // import 'element-ui/lib/theme-chalk/index.css'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -10,6 +11,7 @@ import axios from 'axios'
 axios.defaults.baseURL = 'http://ttapi.research.itcast.cn/mp/v1_0'
 Vue.prototype.$axios = axios
 Vue.use(Elementui)
+Vue.use(component)
 Vue.config.productionTip = false
 
 new Vue({
