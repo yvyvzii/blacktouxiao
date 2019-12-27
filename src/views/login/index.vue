@@ -72,12 +72,13 @@ export default {
             // console.log(result.data)
             window.localStorage.setItem('user-token', result.data.token)
             this.$router.push('/home')
-          }).catch(() => {
-            this.$message({
-              type: 'warning',
-              message: '錯誤'
-            })
           })
+          // .catch(() => {
+          //   this.$message({
+          //     type: 'warning',
+          //     message: '錯誤'
+          //   })
+          // })
         }
       })
     }
