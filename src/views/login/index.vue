@@ -70,7 +70,7 @@ export default {
           }).then(result => {
             // 前端緩存 獲得令牌
             // console.log(result.data)
-            window.localStorage.setItem('user-token', result.data.data.token)
+            window.localStorage.setItem('user-token', result.data.token)
             this.$router.push('/home')
           }).catch(() => {
             this.$message({
