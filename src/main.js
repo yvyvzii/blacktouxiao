@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import './permission'// 引用權限模塊
 import router from './router'
 
 import component from './components/index.js'
