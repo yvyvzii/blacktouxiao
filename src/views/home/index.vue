@@ -2,7 +2,7 @@
   <el-container>
 
     <!-- 左側 -->
-    <el-aside style="height:100vh;background-color:#323745;width:230px">
+    <el-aside style="min-height:100vh;background-color:#323745;width:230px">
       <layout> </layout>
     </el-aside>
     <!-- 右側 -->
